@@ -1,1 +1,0 @@
-(this["webpackJsonpreact-typescript-sass-standard-template"]=this["webpackJsonpreact-typescript-sass-standard-template"]||[]).push([[0],{64:function(t,s,e){"use strict";e.r(s);e(0);var a=e(1);s.default=function(){return Object(a.jsx)("div",{className:"error-notfound",children:"404"})}}}]);

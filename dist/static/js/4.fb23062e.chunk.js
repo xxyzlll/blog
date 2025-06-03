@@ -1,1 +1,0 @@
-(this["webpackJsonpreact-typescript-sass-standard-template"]=this["webpackJsonpreact-typescript-sass-standard-template"]||[]).push([[4],{66:function(t,s,a){"use strict";a.r(s);a(0);var e=a(1);s.default=function(){return Object(e.jsx)("div",{className:"App",children:"this is about page"})}}}]);

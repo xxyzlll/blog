@@ -1,1 +1,0 @@
-(this["webpackJsonpreact-typescript-sass-standard-template"]=this["webpackJsonpreact-typescript-sass-standard-template"]||[]).push([[5],{65:function(t,s,e){"use strict";e.r(s);e(0);var a=e(21),c=e(1);s.default=function(){return Object(c.jsxs)("div",{className:"App",children:["this is mobile home page",Object(c.jsx)(a.b,{to:"/m/about",children:"about"})]})}}}]);
