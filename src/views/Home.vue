@@ -29,7 +29,7 @@
 
 <style scoped lang="less">
 .home-container {
-  background: url("@/assets/home/bg2.webp") 100% 100%;
+  background: url("https://api.maho.cc/random-img/pc.php") 100% 100%;
   width: 100%;
   height: 100vh;
   position: relative;
