@@ -49,7 +49,7 @@ import { defineProps, computed, onMounted, ref } from 'vue'
 import { Calendar, Document, Folder } from '@element-plus/icons-vue'
 
 // 定义组件属性
-const props = defineProps({
+const { data } = defineProps({
   data: {
     type: Object,
     required: true,
@@ -68,11 +68,11 @@ const markdownContent = ref('')
 // 处理日期格式
 const formattedDate = computed(() => {
   // 实际项目中可以使用dayjs进行格式化
-  return props.data.publishDate
+  return data.publishDate
 })
 
 onMounted(async () => {
-  const response = await fetch('/markdown/浏览器工作原理.md');
+  const response = await fetch(data.mdPath);
   markdownContent.value = await response.text();
   console.log(' markdownContent.value', markdownContent.value)
 });
