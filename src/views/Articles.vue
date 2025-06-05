@@ -13,12 +13,13 @@ import { randomImgUrl } from "@/utils";
 import { baseList } from "@/contants/article.ts";
 import type { Article } from "@/types";
 import { useRoute } from "vue-router";
+import type { CustomTag } from "@/contants";
 
 const list = ref<Article[]>([])
-const tag = ref<string>('')
+const tag = ref<CustomTag | ''>('')
 
 const route = useRoute()
-tag.value = route.query.tag as string
+tag.value = route.query.tag as CustomTag
 
 function getList() {
   const baseLength = baseList.length;
@@ -40,7 +41,7 @@ function getList() {
 watch(() => route.path, init, { immediate: true, deep: true })
 
 function init() {
-  tag.value = route.query.tag as string
+  tag.value = route.query.tag as CustomTag
   getList()
 }
 
