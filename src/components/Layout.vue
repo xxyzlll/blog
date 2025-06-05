@@ -115,6 +115,7 @@ const scrollToBottom = () => {
   text-align: center;
   color: rgba(0, 0, 0, 0.3);
   transition: 0.2s ease-in-out;
+  margin-bottom: 10px;
 }
 
 .custom-nav a {
