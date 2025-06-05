@@ -29,11 +29,11 @@
           </el-icon>
           <span>{{ data.wordCount }}字</span>
         </div>
-        <div class="meta-item">
+        <div class="meta-item" v-for="tag in data.tag" :key="tag">
           <el-icon>
             <Folder/>
           </el-icon>
-          <span>{{ data.tag }}</span>
+          <span>{{ tag }}</span>
         </div>
       </div>
     </div>
@@ -154,12 +154,8 @@ function toDetail() {
   margin-right: 5px;
 }
 
-.tag-container {
-  padding: 10px 15px 5px;
-}
-
 .content {
-  padding: 35px 15px;
+  padding: 35px 15px 20px;
   position: relative;
 
   .title {
@@ -185,6 +181,7 @@ function toDetail() {
   color: #606266;
   line-height: 1.5;
   display: -webkit-box;
+  text-indent: 2em;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;

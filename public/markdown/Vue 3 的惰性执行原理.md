@@ -16,7 +16,6 @@ Vue 3 的响应式系统基于 Proxy 对象实现，它可以拦截对象的读�
 Vue 3 的响应式系统使用 Proxy 对象来实现。Proxy 对象可以拦截对象的读取和修改操作，使得 Vue 3 可以在访问对象时追踪依赖关系，并在对象发生变化时触发更新。
 
 以下是 Vue 3 响应式系统的简化实现：
-
 ```javascript
 function reactive(target) {
   const handler = {

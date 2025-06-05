@@ -4,8 +4,8 @@
       <div class="custom-nav">
         <router-link to="/">首页</router-link>
         <router-link to="/articles">Learning</router-link>
+        <router-link to="/tags">标签</router-link>
         <router-link to="/about">关于我</router-link>
-        <router-link to="/friends">友链</router-link>
       </div>
     </div>
     <router-view/>

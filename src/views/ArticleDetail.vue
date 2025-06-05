@@ -72,7 +72,7 @@ async function loadMarkdownContent() {
   try {
     const response = await fetch(article.value.mdPath)
     const text = await response.text()
-    markdownContent.value = md.render(text)
+    markdownContent.value = md.render(text).replace(/<img/g, '<img style="max-width:100%;height:auto;"')
 
     // 渲染后生成目录
     nextTick(generateTOC)
@@ -108,12 +108,13 @@ function generateTOC() {
 }
 </script>
 
-<style scoped>
+<style scoped lang="less">
+
 /* 整体布局 */
 .article-detail-container {
   display: flex;
   padding: 80px 20px 0;
-  max-width: 860px;
+  max-width: 760px;
   position: relative;
   margin: 0 auto 0;
 }
@@ -127,6 +128,7 @@ function generateTOC() {
 .article-detail-header h1 {
   font-weight: 700;
   font-size: 28px;
+  max-width: 760px;
   margin-bottom: 20px;
   text-align: center;
 }
@@ -163,6 +165,7 @@ function generateTOC() {
   padding: 16px;
   border-radius: 4px;
   margin-bottom: 24px;
+  max-width: 760px;
   color: #495057;
   font-size: 15px;
   line-height: 1.6;
@@ -178,7 +181,7 @@ function generateTOC() {
 .toc-container {
   position: fixed;
   top: 20px;
-  right: calc((100% - 860px) / 2);
+  right: calc((100% - 760px) / 2);
   width: 240px;
   background: white;
   border: 1px solid #eaeaea;
