@@ -25,6 +25,7 @@ function toList(tag: string) {
 .tags-container {
   max-width: 800px;
   margin: 80px auto;
+  min-height: calc(100vh - 200px);
 
   .tag-item {
     cursor: pointer;

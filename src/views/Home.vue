@@ -26,8 +26,10 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 
 const typewriterText = ref<HTMLSpanElement | null>(null)
-const text = "undefined"
-    // || "落日熔尽最后一块金锭，群山便典当了影子"
+const text =
+    // "undefined"
+    "落日熔尽最后一块金锭，群山便典当了影子"
+
 let currentIndex = 0
 let timer: number | null = null
 

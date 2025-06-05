@@ -11,7 +11,7 @@
     <router-view/>
 
     <footer class="custom-nav-foot">
-      Theme Sakurairo by x
+      Powered by yyyl
     </footer>
 
     <div class="scroll-buttons">
