@@ -1,129 +1,129 @@
 <template>
-  <el-card class="about-card">
-    <div class="header-section">
-      <img src="@/assets/me/avatar.jpg"/>
-      <div class="header-info">
-        <h1>前端开发工程师</h1>
-        <el-tag effect="dark" type="success">4年开发经验</el-tag>
-      </div>
-    </div>
-
-    <el-divider/>
-
-    <el-timeline>
-      <el-timeline-item
-          v-for="(exp, index) in workExperience"
-          :key="index"
-          :timestamp="exp.period"
-          placement="top"
-      >
-        <el-card class="experience-card">
-          <h3 class="blur-text">{{ exp.company }}</h3>
-          <el-tag
-              v-for="(tag, tagIndex) in exp.tags"
-              :key="tagIndex"
-              :type="['','success','info'][tagIndex%3]"
-              class="tag-margin"
-          >
-            {{ tag }}
-          </el-tag>
-          <ul class="experience-list">
-            <li v-for="(item, itemIndex) in exp.items" :key="itemIndex">
-              {{ item }}
-            </li>
-          </ul>
-        </el-card>
-      </el-timeline-item>
-    </el-timeline>
-
-    <el-collapse v-model="activeNames" class="skill-collapse">
-      <el-collapse-item name="1">
-        <template #title>
-          <el-icon>
-            <star/>
-          </el-icon>
-          <span class="collapse-title">核心技术栈</span>
-        </template>
-        <div class="skill-tags">
-          <el-tag
-              v-for="(skill, index) in skills"
-              :key="index"
-              :type="index%2 ? 'info' : 'success'"
-              effect="light"
-              class="skill-tag"
-          >
-            {{ skill }}
-          </el-tag>
+  <div>
+    <el-card class="about-card">
+      <div class="header-section">
+        <img src="@/assets/me/avatar.jpg"/>
+        <div class="header-info">
+          <h1>前端开发工程师</h1>
+          <el-tag effect="dark" type="success">4年开发经验</el-tag>
         </div>
-      </el-collapse-item>
-    </el-collapse>
+      </div>
 
-    <!--    <el-divider />-->
-    <!--    <h3>教育背景</h3>-->
-    <!--    <div class="education-section">-->
-    <!--      <el-icon><location /></el-icon>-->
-    <!--      <span>广东东软学院 · 软件工程 · 统招本科（2017-2021）</span>-->
-    <!--    </div>-->
+      <el-divider/>
 
-    <el-collapse v-model="activeProject" class="project-collapse">
-      <el-collapse-item name="2">
-        <template #title>
-          <el-icon>
-            <document/>
-          </el-icon>
-          <span class="collapse-title">重点项目经验</span>
-        </template>
+      <el-timeline>
+        <el-timeline-item
+            v-for="(exp, index) in workExperience"
+            :key="index"
+            :timestamp="exp.period"
+            placement="top"
+        >
+          <el-card class="experience-card">
+            <h3 class="blur-text">{{ exp.company }}</h3>
+            <el-tag
+                v-for="(tag, tagIndex) in exp.tags"
+                :key="tagIndex"
+                :type="['primary','success','info'][tagIndex%3]"
+                class="tag-margin"
+            >
+              {{ tag }}
+            </el-tag>
+            <ul class="experience-list">
+              <li v-for="(item, itemIndex) in exp.items" :key="itemIndex">
+                {{ item }}
+              </li>
+            </ul>
+          </el-card>
+        </el-timeline-item>
+      </el-timeline>
 
-        <el-carousel :interval="5000" height="580px" type="card">
-          <el-carousel-item v-for="(project, index) in projects" :key="index">
-            <el-card class="project-card">
-              <div class="project-header">
-                <h3>{{ project.title }}</h3>
-                <el-tag effect="dark" type="warning">{{ project.role }}</el-tag>
-              </div>
-              <div class="project-desc">{{ project.desc }}</div>
-              <el-divider/>
+      <el-collapse v-model="activeNames" class="skill-collapse">
+        <el-collapse-item name="1">
+          <template #title>
+            <el-icon>
+            </el-icon>
+            <span class="collapse-title">核心技术栈</span>
+          </template>
+          <div class="skill-tags">
+            <el-tag
+                v-for="(skill, index) in skills"
+                :key="index"
+                :type="index%2 ? 'info' : 'success'"
+                effect="light"
+                class="skill-tag"
+            >
+              {{ skill }}
+            </el-tag>
+          </div>
+        </el-collapse-item>
+      </el-collapse>
 
-              <div class="tech-stack">
-                <el-tag
-                    v-for="(tech, techIndex) in project.techStack"
-                    :key="techIndex"
-                    type="info"
-                    effect="light"
-                    class="tech-tag"
-                >
-                  {{ tech }}
-                </el-tag>
-              </div>
+      <!--    <el-divider />-->
+      <!--    <h3>教育背景</h3>-->
+      <!--    <div class="education-section">-->
+      <!--      <el-icon><location /></el-icon>-->
+      <!--      <span>广东东软学院 · 软件工程 · 统招本科（2017-2021）</span>-->
+      <!--    </div>-->
 
-              <el-timeline class="project-timeline">
-                <el-timeline-item
-                    v-for="(item, itemIndex) in project.highlights"
-                    :key="itemIndex"
-                    placement="top"
-                    :timestamp="item.title"
-                >
-                  <ul class="highlight-list">
-                    <li v-for="(desc, descIndex) in item.items" :key="descIndex">
-                      {{ desc }}
-                    </li>
-                  </ul>
-                </el-timeline-item>
-              </el-timeline>
+      <el-collapse v-model="activeProject" class="project-collapse">
+        <el-collapse-item name="2">
+          <template #title>
+            <el-icon>
+            </el-icon>
+            <span class="collapse-title">重点项目经验</span>
+          </template>
 
-              <!--              <el-divider/>-->
-              <!--              <div class="project-results">-->
-              <!--                <el-icon>-->
-              <!--                  <trophy/>-->
-              <!--                </el-icon>-->
-              <!--                <span>{{ project.results }}</span>-->
-              <!--              </div>-->
-            </el-card>
-          </el-carousel-item>
-        </el-carousel>
-      </el-collapse-item>
-    </el-collapse>
-  </el-card>
+          <el-carousel :interval="5000" height="580px" type="card">
+            <el-carousel-item v-for="(project, index) in projects" :key="index">
+              <el-card class="project-card">
+                <div class="project-header">
+                  <h3>{{ project.title }}</h3>
+                  <el-tag effect="dark" type="warning">{{ project.role }}</el-tag>
+                </div>
+                <div class="project-desc">{{ project.desc }}</div>
+                <el-divider/>
+
+                <div class="tech-stack">
+                  <el-tag
+                      v-for="(tech, techIndex) in project.techStack"
+                      :key="techIndex"
+                      type="info"
+                      effect="light"
+                      class="tech-tag"
+                  >
+                    {{ tech }}
+                  </el-tag>
+                </div>
+
+                <el-timeline class="project-timeline">
+                  <el-timeline-item
+                      v-for="(item, itemIndex) in project.highlights"
+                      :key="itemIndex"
+                      placement="top"
+                      :timestamp="item.title"
+                  >
+                    <ul class="highlight-list">
+                      <li v-for="(desc, descIndex) in item.items" :key="descIndex">
+                        {{ desc }}
+                      </li>
+                    </ul>
+                  </el-timeline-item>
+                </el-timeline>
+
+                <!--              <el-divider/>-->
+                <!--              <div class="project-results">-->
+                <!--                <el-icon>-->
+                <!--                  <trophy/>-->
+                <!--                </el-icon>-->
+                <!--                <span>{{ project.results }}</span>-->
+                <!--              </div>-->
+              </el-card>
+            </el-carousel-item>
+          </el-carousel>
+        </el-collapse-item>
+      </el-collapse>
+    </el-card>
+  </div>
 </template>
 
 <script setup lang="ts">

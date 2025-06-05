@@ -13,70 +13,83 @@
     <footer class="custom-nav-foot">
       Theme Sakurairo by x
     </footer>
+
     <div class="scroll-buttons">
       <el-button
           class="scroll-btn top"
-          :icon="ArrowUp"
           @click="scrollToTop"
-          @mousedown="startScroll('up')"
-          @mouseup="stopScroll"
-          @mouseleave="stopScroll"
+          :icon="ArrowUp"
       />
+
       <el-button
           class="scroll-btn bottom"
-          :icon="ArrowDown"
           @click="scrollToBottom"
-          @mousedown="startScroll('down')"
-          @mouseup="stopScroll"
-          @mouseleave="stopScroll"
+          :icon="ArrowDown"
       />
     </div>
   </div>
 </template>
+
 <script setup lang="ts">
 import { ArrowUp, ArrowDown } from '@element-plus/icons-vue'
-import { onUnmounted, ref } from 'vue'
+import { ref } from 'vue'
 
-const isScrolling = ref(false)
-const scrollDirection = ref('')
-let scrollInterval: number | null = null
+const isScrolling = ref(false);
+// const scrollDirection = ref('');
+// const scrollInterval = ref<number | null>(null);
 
+// 平滑滚动到顶部（点击功能）
 const scrollToTop = () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' })
+  if (isScrolling.value) return
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+// 平滑滚动到底部（点击功能）
 const scrollToBottom = () => {
-  window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' })
+  if (isScrolling.value) return
+  window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' });
 }
 
-const startScroll = (direction: string) => {
-  scrollDirection.value = direction
-  isScrolling.value = true
-  smoothScroll()
-}
+// // 开始滚动（长按功能）
+// const startScroll = (e: any, direction: string) => {
+//   e.stopPropagation()
+//   e.preventDefault()
+//   scrollDirection.value = direction;
+//   isScrolling.value = true;
+//
+//   // 使用固定步长匀速滚动（100px/次）
+//   const step = direction === 'up' ? -100 : 100;
+//
+//   // 立即执行第一次滚动
+//   window.scrollBy({ top: step, behavior: 'smooth' });
+//
+//   // 设置固定间隔的滚动（300ms/次）
+//   scrollInterval.value = setInterval(() => {
+//     window.scrollBy({ top: step, behavior: 'smooth' });
+//   }, 300) as unknown as number;
+// }
 
-const smoothScroll = () => {
-  if (!isScrolling.value) return
+// // 停止滚动
+// const stopScroll = () => {
+//   console.log('stopScroll')
+//
+//   // 清除滚动定时器
+//   if (scrollInterval.value !== null) {
+//     clearInterval(scrollInterval.value);
+//     scrollInterval.value = null;
+//   }
+// }
 
-  const step = scrollDirection.value === 'up' ? -80 : 80
-  window.scrollBy({ top: step, behavior: 'smooth' })
-
-  scrollInterval = requestAnimationFrame(smoothScroll)
-}
-
-const stopScroll = () => {
-  isScrolling.value = false
-  if (scrollInterval) {
-    cancelAnimationFrame(scrollInterval)
-    scrollInterval = null
-  }
-}
-
-// 清理动画帧
-onUnmounted(() => {
-  stopScroll()
-})
+// const scrollLeave = () => {
+//   isScrolling.value = false;
+//   console.log('scrollLeave')
+// }
+// 组件卸载时清理资源
+// onUnmounted(() => {
+//   stopScroll();
+// });
 </script>
+
 <style scoped>
 .fixed-bar {
   position: fixed;
@@ -89,9 +102,9 @@ onUnmounted(() => {
 .custom-nav {
   display: flex;
   justify-content: center;
-  background: #fff; /* 背景色根据需要调整 */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 可选：添加轻微阴影替代边框 */
-  height: 30px; /* 与原始菜单高度一致 */
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 30px;
   line-height: 30px;
   width: fit-content;
   padding: 10px 20px;
@@ -112,8 +125,6 @@ onUnmounted(() => {
   color: #606266;
   font-size: 14px;
   transition: color 0.3s;
-
-  /* 移除所有边框 */
   border: none !important;
   padding: 0 20px;
   border-radius: 30px;
@@ -152,6 +163,8 @@ onUnmounted(() => {
   border-radius: 50%;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   transition: all 0.3s ease;
+  transform: translateZ(0); /* 启用硬件加速 */
+  will-change: transform; /* 提示浏览器提前优化 */
 
   :deep(svg) {
     width: 1.5em;
@@ -163,7 +176,30 @@ onUnmounted(() => {
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
   }
 
+  &.top {
+    animation: floatTop 2s infinite ease-in-out;
+  }
+
   &.bottom {
+    animation: floatBottom 2s infinite ease-in-out;
+  }
+}
+
+@keyframes floatTop {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-5px) scale(1.05);
+  }
+}
+
+@keyframes floatBottom {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(5px) scale(1.05);
   }
 }
 </style>
