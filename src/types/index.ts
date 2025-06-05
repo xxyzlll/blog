@@ -1,5 +1,7 @@
+import type { CustomTag } from "@/contants";
+
 export interface Article {
-    tag: string[]
+    tag: CustomTag[]
     description: string
     publishDate: string
     mdPath: string
