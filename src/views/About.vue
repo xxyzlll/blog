@@ -18,7 +18,7 @@
           placement="top"
       >
         <el-card class="experience-card">
-          <h3>{{ exp.company }}</h3>
+          <h3 class="blur-text">{{ exp.company }}</h3>
           <el-tag
               v-for="(tag, tagIndex) in exp.tags"
               :key="tagIndex"
@@ -135,7 +135,7 @@ const activeProject = ref(['2'])
 const workExperience = reactive([{
   company: '精创芯国科技有限公司',
   period: '2024.03 - 至今',
-  tags: ['React', 'Next.js', 'AI中台'],
+  tags: ['React', '大屏', 'AI中台'],
   items: [
     '主导OA低代码平台架构设计，实现开发效率提升40%',
     '构建政企研生态圈AI中台，支持RAG应用与Agent工作流',
@@ -144,7 +144,7 @@ const workExperience = reactive([{
 }, {
   company: '鱼爪集团',
   period: '2022.02 - 2023.12',
-  tags: ['Vue3', '微前端', 'AIGC'],
+  tags: ['Vue3', 'Nuxt js', 'AIGC'],
   items: [
     '制定新版前端研发规范，统一集团技术栈',
     '开发全链路监控SDK，系统可用性达99.99%',
@@ -262,6 +262,28 @@ const projects = reactive([{
 .experience-card {
   margin: 15px 0;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+
+  .tag-margin {
+    margin-right: 10px;
+  }
+
+}
+
+.blur-text {
+  -webkit-user-select: none; /* Safari/Chrome */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+ */
+  user-select: none; /* 标准语法 */
+
+  color: transparent; /* 隐藏原文字 */
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.9);
+
+  //color: transparent; /* 隐藏原文字 */
+  //text-shadow: 0 0 12px rgba(0, 0, 0, 0.9); /* 模糊半径越大越难辨认 */
+
+
+  //filter: blur(8px); /* 值越大越模糊 */
+  //-webkit-filter: blur(8px);
 }
 
 .experience-list {
@@ -319,7 +341,8 @@ const projects = reactive([{
   justify-content: space-between;
   align-items: center;
 }
-.project-desc{
+
+.project-desc {
   text-indent: 2em;
 }
 

@@ -13,10 +13,70 @@
     <footer class="custom-nav-foot">
       Theme Sakurairo by x
     </footer>
-
+    <div class="scroll-buttons">
+      <el-button
+          class="scroll-btn top"
+          :icon="ArrowUp"
+          @click="scrollToTop"
+          @mousedown="startScroll('up')"
+          @mouseup="stopScroll"
+          @mouseleave="stopScroll"
+      />
+      <el-button
+          class="scroll-btn bottom"
+          :icon="ArrowDown"
+          @click="scrollToBottom"
+          @mousedown="startScroll('down')"
+          @mouseup="stopScroll"
+          @mouseleave="stopScroll"
+      />
+    </div>
   </div>
 </template>
+<script setup lang="ts">
+import { ArrowUp, ArrowDown } from '@element-plus/icons-vue'
+import { onUnmounted, ref } from 'vue'
 
+const isScrolling = ref(false)
+const scrollDirection = ref('')
+let scrollInterval: number | null = null
+
+const scrollToTop = () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' })
+}
+
+const scrollToBottom = () => {
+  window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' })
+}
+
+const startScroll = (direction: string) => {
+  scrollDirection.value = direction
+  isScrolling.value = true
+  smoothScroll()
+}
+
+const smoothScroll = () => {
+  if (!isScrolling.value) return
+
+  const step = scrollDirection.value === 'up' ? -80 : 80
+  window.scrollBy({ top: step, behavior: 'smooth' })
+
+  scrollInterval = requestAnimationFrame(smoothScroll)
+}
+
+const stopScroll = () => {
+  isScrolling.value = false
+  if (scrollInterval) {
+    cancelAnimationFrame(scrollInterval)
+    scrollInterval = null
+  }
+}
+
+// 清理动画帧
+onUnmounted(() => {
+  stopScroll()
+})
+</script>
 <style scoped>
 .fixed-bar {
   position: fixed;
@@ -74,6 +134,36 @@
   height: 2px;
   background: #409eff;
 }
+
+.scroll-buttons {
+  position: fixed;
+  right: 40px;
+  bottom: 40px;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.scroll-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+
+  :deep(svg) {
+    width: 1.5em;
+    height: 1.5em;
+  }
+
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  &.bottom {
+  }
+}
 </style>
-<script setup lang="ts">
-</script>
