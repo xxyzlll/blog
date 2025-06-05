@@ -6,6 +6,7 @@
         <div class="header-info">
           <h1>前端开发工程师</h1>
           <el-tag effect="dark" type="success">4年开发经验</el-tag>
+          <el-tag effect="dark" type="primary" class="ml10" @click="navigateOpen">掘金</el-tag>
         </div>
       </div>
 
@@ -128,109 +129,116 @@
 
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
+import { JUE_JIN_LINK } from "@/contants";
 
 const activeNames = ref(['1'])
 const activeProject = ref(['2'])
 
-const workExperience = reactive([{
-  company: '精创芯国科技有限公司',
-  period: '2024.03 - 至今',
-  tags: ['React', '大屏', 'AI中台'],
-  items: [
-    '主导OA低代码平台架构设计，实现开发效率提升40%',
-    '构建政企研生态圈AI中台，支持RAG应用与Agent工作流',
-    '落地WebSocket视频流低延迟传输方案（<200ms）'
-  ]
-}, {
-  company: '鱼爪集团',
-  period: '2022.02 - 2023.12',
-  tags: ['Vue3', 'Nuxt js', 'AIGC'],
-  items: [
-    '制定新版前端研发规范，统一集团技术栈',
-    '开发全链路监控SDK，系统可用性达99.99%',
-    '封装中台通用AIGC SDK，支持快速接入'
-  ]
-}, {
-  company: '广州蜂芒网络科技有限公司',
-  period: '2020.06 - 2022.02',
-  tags: [],
-  items: [
-    '驱动 Vue3+TS 架构升级，推进组合式 API 落地',
-    '多端研发覆盖，H5/小程序/RN 跨平台适配'
-  ]
-}])
+const workExperience = reactive([
+  {
+    company: '精创芯国科技有限公司',
+    period: '2024.03 - 至今',
+    tags: ['React', '大屏', 'AI中台'],
+    items: [
+      '主导OA低代码平台架构设计，实现开发效率提升40%',
+      '构建政企研生态圈AI中台，支持RAG应用与Agent工作流',
+      '落地WebSocket视频流低延迟传输方案（<200ms）'
+    ]
+  }, {
+    company: '鱼爪集团',
+    period: '2022.02 - 2023.12',
+    tags: ['Vue3', 'Nuxt js', 'AIGC'],
+    items: [
+      '制定新版前端研发规范，统一集团技术栈',
+      '开发全链路监控SDK，系统可用性达99.99%',
+      '封装中台通用AIGC SDK，支持快速接入'
+    ]
+  }, {
+    company: '广州蜂芒网络科技有限公司',
+    period: '2020.06 - 2022.02',
+    tags: [],
+    items: [
+      '驱动 Vue3+TS 架构升级，推进组合式 API 落地',
+      '多端研发覆盖，H5/小程序/RN 跨平台适配'
+    ]
+  }])
 
 const skills = reactive([
   'TypeScript', 'React/Vue', 'RN/Uniapp',
   'Webpack/Vite', 'Node.js', 'Dify', '性能调优'
 ])
 
-const projects = reactive([{
-  title: '园区智改平台',
-  role: '前端开发',
-  desc: '构建政府-园区-企业三级联动智改数转体系，整合经济运行、安全态势等 12 类全域数据，实现数据可视、AI 预警、处置闭环。通过 LLM 大模型赋能安全生产与移动办公，助力企业降本 30%+、关键工序数控化率达 92%',
-  techStack: ['React', 'Uniapp', 'Dify', 'WebSocket'],
-  highlights: [{
-    title: '技术创新',
-    items: [
-      '大模型流式响应优化',
-      '视频流延迟<200ms',
-      '多端通信协议统一'
-    ]
+const projects = reactive([
+  {
+    title: '园区智改平台',
+    role: '前端开发',
+    desc: '构建政府-园区-企业三级联动智改数转体系，整合经济运行、安全态势等 12 类全域数据，实现数据可视、AI 预警、处置闭环。通过 LLM 大模型赋能安全生产与移动办公，助力企业降本 30%+、关键工序数控化率达 92%',
+    techStack: ['React', 'Uniapp', 'Dify', 'WebSocket'],
+    highlights: [{
+      title: '技术创新',
+      items: [
+        '大模型流式响应优化',
+        '视频流延迟<200ms',
+        '多端通信协议统一'
+      ]
+    }, {
+      title: '业务价值',
+      items: [
+        '关键工序数控化率92%',
+        '企业运维成本降低30%',
+        'AI预警响应速度提升40%'
+      ]
+    }],
+    results: '入选省级数字化转型示范项目'
   }, {
-    title: '业务价值',
-    items: [
-      '关键工序数控化率92%',
-      '企业运维成本降低30%',
-      'AI预警响应速度提升40%'
-    ]
-  }],
-  results: '入选省级数字化转型示范项目'
-}, {
-  title: '集团风控系统',
-  role: '前端负责人',
-  desc: '公司战略级风控平台，主要风控集团资金、员工行为和敏感信息等，对接数十个中台系统。独立完成包含模型设置、指标构建、风险排行榜、资金风险、黑白名单、SDK 抽离、线上错误日志等全部模块功能开发',
-  techStack: ['React', 'Umi', 'Antd', 'Webpack'],
-  highlights: [{
-    title: '核心功能',
-    items: [
-      'SDK抽离与性能监控',
-      '源映射错误定位系统',
-      '多中台对接解决方案'
-    ]
+    title: '集团风控系统',
+    role: '前端负责人',
+    desc: '公司战略级风控平台，主要风控集团资金、员工行为和敏感信息等，对接数十个中台系统。独立完成包含模型设置、指标构建、风险排行榜、资金风险、黑白名单、SDK 抽离、线上错误日志等全部模块功能开发',
+    techStack: ['React', 'Umi', 'Antd', 'Webpack'],
+    highlights: [{
+      title: '核心功能',
+      items: [
+        'SDK抽离与性能监控',
+        '源映射错误定位系统',
+        '多中台对接解决方案'
+      ]
+    }, {
+      title: '技术突破',
+      items: [
+        'SDK初始化成功率99.99%',
+        '错误日志定位效率提升70%',
+        '性能指标采集精度±2%'
+      ]
+    }],
+    results: '累计减少企业损失近百万元'
   }, {
-    title: '技术突破',
-    items: [
-      'SDK初始化成功率99.99%',
-      '错误日志定位效率提升70%',
-      '性能指标采集精度±2%'
-    ]
-  }],
-  results: '累计减少企业损失近百万元'
-}, {
-  title: '麦汇知识产权业务线产品改版',
-  role: '前端开发',
-  desc: '麦汇业务线产品支援，负责对多端产品进行样式改版和 API 替换，以提升用户体验和优化网站性能',
-  techStack: ['Vue', 'Nuxt.js', 'Vite'],
-  highlights: [{
-    title: '核心功能',
-    items: [
-      '通用组件封装，rollup 打包并完成单测和文档产出',
-      'Vite 替换 Vue-Cli',
-      '性能调优、SEO 优化'
-    ]
-  }, {
-    title: '技术突破',
-    items: [
-      '40%的需求工时由 5h 降低到 1h',
-      '降低项目 80% 启动时间，打包时间节省约 35%',
-      '网站自然流量增长 60%',
-      '大幅提升了 LCP、TBT，降低 FCP 指标'
-    ]
-  }],
-  results: '累计减少企业损失近百万元'
-},])
+    title: '麦汇知识产权业务线产品改版',
+    role: '前端开发',
+    desc: '麦汇业务线产品支援，负责对多端产品进行样式改版和 API 替换，以提升用户体验和优化网站性能',
+    techStack: ['Vue', 'Nuxt.js', 'Vite'],
+    highlights: [{
+      title: '核心功能',
+      items: [
+        '通用组件封装，rollup 打包并完成单测和文档产出',
+        'Vite 替换 Vue-Cli',
+        '性能调优、SEO 优化'
+      ]
+    }, {
+      title: '技术突破',
+      items: [
+        '40%的需求工时由 5h 降低到 1h',
+        '降低项目 80% 启动时间，打包时间节省约 35%',
+        '网站自然流量增长 60%',
+        '大幅提升了 LCP、TBT，降低 FCP 指标'
+      ]
+    }],
+    results: '累计减少企业损失近百万元'
+  },])
 
+
+function navigateOpen() {
+  window.open(JUE_JIN_LINK)
+}
 </script>
 
 <style scoped lang="less">
@@ -257,6 +265,10 @@ const projects = reactive([{
   margin: 0 0 15px 0;
   font-size: 2.2em;
   color: #2c3e50;
+}
+
+.header-info span {
+  cursor: pointer;
 }
 
 .experience-card {
