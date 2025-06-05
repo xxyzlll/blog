@@ -6,25 +6,59 @@
         <div>
           <p>
             <span>“</span>
-            给时光以生命，给岁月以文明
+            <span ref="typewriterText" class="typewriter-text"></span>
+            <span class="blinking-cursor"></span>
             <span>”</span>
           </p>
-          <p>xx</p>
+          <p>yyyl</p>
         </div>
       </div>
-
 
       <div class="wave">
         <div class="wave1"/>
         <div class="wave2"/>
       </div>
     </div>
-
   </div>
 </template>
 
 <script setup lang="ts">
-// 后续可添加数据逻辑
+import { ref, onMounted, onUnmounted } from 'vue'
+
+const typewriterText = ref<HTMLSpanElement | null>(null)
+const text = "undefined" || "落日熔尽最后一块金锭，群山便典当了影子"
+let currentIndex = 0
+let timer: number | null = null
+
+onMounted(() => {
+  startTypewriterEffect()
+})
+
+onUnmounted(() => {
+  stopTypewriterEffect()
+})
+
+const startTypewriterEffect = () => {
+  if (!typewriterText.value) return
+
+  timer = setInterval(() => {
+    if (currentIndex < text.length) {
+      if (typewriterText.value) {
+        typewriterText.value.textContent += text.charAt(currentIndex)
+      }
+      currentIndex++
+    } else {
+      stopTypewriterEffect()
+    }
+  }, 150) as unknown as number
+}
+
+const stopTypewriterEffect = () => {
+  if (timer) {
+    clearInterval(timer)
+    timer = null
+  }
+}
 </script>
 
 <style scoped lang="less">
@@ -58,6 +92,13 @@
 
       p {
         margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        span:first-child, span:last-child {
+          margin: 0 5px;
+        }
       }
     }
   }
@@ -75,14 +116,13 @@
       height: 80px;
 
       background-repeat: repeat-x; /* 关键：水平重复 */
-      background-size: auto 100%;  /* 保持原始高度自适应 */
+      background-size: auto 100%; /* 保持原始高度自适应 */
     }
 
     .wave1 {
       background: url("@/assets/home/wave1.png");
       animation: waveScroll 10s linear infinite;
     }
-
 
     .wave2 {
       background: url("@/assets/home/wave2.png") repeat-x;
@@ -108,5 +148,30 @@
   }
 }
 
+/* 打字机效果样式 */
+.typewriter-text {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  letter-spacing: 0.15em;
+}
 
+.blinking-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background-color: currentColor;
+  margin-left: 1px;
+  animation: blink 1s infinite;
+  vertical-align: middle;
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
 </style>

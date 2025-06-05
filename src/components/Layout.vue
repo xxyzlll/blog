@@ -122,7 +122,7 @@ const scrollToBottom = () => {
   display: flex;
   align-items: center;
   text-decoration: none;
-  color: #606266;
+  color: #00009f;
   font-size: 14px;
   transition: color 0.3s;
   border: none !important;
@@ -131,7 +131,7 @@ const scrollToBottom = () => {
 }
 
 .custom-nav a:hover {
-  color: #409eff;
+  color: #00009f;
   font-weight: bold;
   background: #bee0ff;
   position: relative;
