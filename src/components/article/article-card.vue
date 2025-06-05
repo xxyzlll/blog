@@ -1,12 +1,19 @@
 <template>
   <div class="article-card">
     <!-- 背景图片区域 -->
-    <div class="image-container">
-      <img
-          :src="data.imageUrl"
+    <div class="image-container" @click="toDetail">
+      <el-image
           :alt="data.title"
-          class="background-image"
-      >
+          :src="data.imageUrl"
+          fit="cover"
+          class="background-image">
+        <template #placeholder>
+          <img
+              src="@/assets/learn/outload.svg"
+              class="background-image"
+          >
+        </template>
+      </el-image>
       <!-- 左上角：发布时间 -->
       <div class="publish-date">
         <el-icon>
@@ -26,27 +33,25 @@
           <el-icon>
             <Folder/>
           </el-icon>
-          <span>{{ data.category }}</span>
+          <span>{{ data.tag }}</span>
         </div>
       </div>
     </div>
 
-    <!-- 标签区域 -->
-    <div class="tag-container">
-      <el-tag type="info" size="small">{{ data.tag }}</el-tag>
-    </div>
-
     <!-- 文章描述 -->
     <div class="content">
-      <h3>{{ data.title }}</h3>
+      <h3 class="title">{{ data.title }}</h3>
       <p>{{ data.description }}</p>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { defineProps, computed, onMounted, ref } from 'vue'
+import { defineProps, computed } from 'vue'
 import { Calendar, Document, Folder } from '@element-plus/icons-vue'
+import { useRouter } from "vue-router";
+
+const router = useRouter()
 
 // 定义组件属性
 const { data } = defineProps({
@@ -60,22 +65,19 @@ const { data } = defineProps({
       publishDate: '',
       tag: '',
       wordCount: 0,
-      category: ''
     })
   }
 })
-const markdownContent = ref('')
 // 处理日期格式
 const formattedDate = computed(() => {
   // 实际项目中可以使用dayjs进行格式化
   return data.publishDate
 })
 
-onMounted(async () => {
-  const response = await fetch(data.mdPath);
-  markdownContent.value = await response.text();
-  console.log(' markdownContent.value', markdownContent.value)
-});
+function toDetail() {
+  router.push('/article-detail?data=' + JSON.stringify(data))
+}
+
 
 </script>
 
@@ -88,7 +90,6 @@ onMounted(async () => {
   background: #fff;
   transition: transform 0.3s;
   margin-bottom: 40px;
-  min-height: 270px;
 }
 
 .article-card:hover {
@@ -136,9 +137,7 @@ onMounted(async () => {
   top: 10px;
   right: 10px;
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 5px;
+  gap: 10px;
 }
 
 .meta-item {
@@ -160,7 +159,17 @@ onMounted(async () => {
 }
 
 .content {
-  padding: 0 15px 15px;
+  padding: 35px 15px;
+  position: relative;
+
+  .title {
+    position: absolute;
+    top: -30px;
+    background: rgba(220, 212, 212, 0.74);
+    padding: 10px 15px;
+    border-radius: 6px;
+    color: #505050;
+  }
 }
 
 .content h3 {
