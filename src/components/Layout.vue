@@ -6,6 +6,7 @@
         <router-link to="/articles">Learning</router-link>
         <router-link to="/tags">标签</router-link>
         <router-link to="/about">关于我</router-link>
+        <router-link to="/link">链接网站</router-link>
       </div>
     </div>
     <router-view/>
