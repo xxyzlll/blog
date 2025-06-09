@@ -32,7 +32,10 @@
 
 <script setup lang="ts">
 import { ArrowUp, ArrowDown } from '@element-plus/icons-vue'
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
+import { useRoute } from "vue-router";
+
+const route = useRoute()
 
 const isScrolling = ref(false);
 // const scrollDirection = ref('');
@@ -50,6 +53,9 @@ const scrollToBottom = () => {
   window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' });
 }
 
+watch(() => route.path, () => {
+  window.scrollTo({ top: 0 });
+}, { immediate: true, deep: true })
 // // 开始滚动（长按功能）
 // const startScroll = (e: any, direction: string) => {
 //   e.stopPropagation()

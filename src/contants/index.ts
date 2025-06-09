@@ -1,5 +1,5 @@
 export const customTags = [
-    'Vue', 'React', 'React Native', 'Uni app', '生活', '摸鱼'
+    'Javascript', 'Vue', 'React', 'React Native', 'Uni app', '生活', '摸鱼'
 ] as const
 
 export type CustomTag = typeof customTags[number];
