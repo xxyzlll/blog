@@ -65,7 +65,8 @@
 
 <script setup lang="ts">
 import { ref, computed } from "vue";
-import { Star, Link, View, Search } from "@element-plus/icons-vue";
+import { Star, Link, View } from "@element-plus/icons-vue";
+
 
 // 分类定义
 const categories = ref([
