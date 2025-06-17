@@ -113,6 +113,7 @@ watch(() => route.path, () => {
   height: 30px;
   line-height: 30px;
   width: fit-content;
+  min-width: 425px;
   padding: 10px 20px;
   border-radius: 20px;
 }
