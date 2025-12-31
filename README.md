@@ -1,5 +1,65 @@
-# Vue 3 + TypeScript + Vite
+# 个人博客项目
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+基于 Vue 3 + TypeScript + Vite 构建的个人博客网站。
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+## 🚀 快速开始
+
+```bash
+# 安装依赖
+npm install
+
+# 本地开发
+npm run dev
+
+# 构建项目
+npm run build
+```
+
+## 📦 部署上线
+
+**详细部署流程请查看**: [上线流程.md](./上线流程.md)
+
+```bash
+# 首次配置（只需一次）
+npm run setup-ssh
+
+# 日常部署
+npm run deploy
+```
+
+## 🛠️ 技术栈
+
+- Vue 3 (Composition API)
+- TypeScript
+- Vite
+- Vue Router
+- Element Plus
+- Markdown 渲染
+
+## 📁 项目结构
+
+```
+├── src/
+│   ├── views/         # 页面组件
+│   ├── components/    # 公共组件
+│   ├── router/        # 路由配置
+│   ├── contants/      # 常量配置
+│   └── utils/         # 工具函数
+├── public/
+│   └── markdown/      # Markdown 文章
+└── blog/             # 构建输出目录
+```
+
+## 部署流程详解
+
+`npm run deploy` 会自动完成：
+
+1. ✅ 本地构建项目（`npm run build`）
+2. ✅ 打包生成 `blog/` 目录
+3. ✅ 使用 rsync 同步到服务器
+4. ✅ 验证部署结果
+
+## 🔄 复用到其他项目
+
+已准备好通用部署模板，可快速应用到其他项目：
+

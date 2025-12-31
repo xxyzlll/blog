@@ -24,3 +24,6 @@ dist-ssr
 *.sln
 *.sw?
 .vercel
+
+# Deploy config (contains sensitive server information)
+.deploy.config
