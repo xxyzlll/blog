@@ -38,7 +38,7 @@ jobs:
         username: ${{ secrets.SERVER_USER }}
         key: ${{ secrets.SERVER_SSH_KEY }}
         port: ${{ secrets.SSH_PORT || '22' }}
-        source: "dist/*"  # 根据你的构建输出目录调整
+        source: "blog/*"  # 根据你的构建输出目录调整
         target: ${{ secrets.TARGET_PATH }}
         rm: true  # 删除目标目录旧文件
         
