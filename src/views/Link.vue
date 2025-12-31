@@ -140,7 +140,7 @@ const sites = ref([
   {
     url: `${window.location.origin}/wxapp`,
     title: '心意动',
-    subTitle: '谈个恋爱吧（请微信搜索同名小程序访问）',
+    subTitle: '谈个恋爱吧（请在微信小程序搜索心意动访问～）',
     category: 6 // 我的项目
   },
 ]);
