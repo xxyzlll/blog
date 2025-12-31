@@ -75,7 +75,8 @@ const categories = ref([
   { value: 2, label: "科学上网" },
   { value: 3, label: "资源导航" },
   { value: 4, label: "流量卡代理" },
-  { value: 5, label: "开发者工具" }
+  { value: 5, label: "开发者工具" },
+  { value: 6, label: "我的项目" }
 ]);
 
 const categoryTypes = ["primary", "success", "warning"];
@@ -135,6 +136,12 @@ const sites = ref([
     title: 'OpenAI',
     subTitle: '人工智能研究实验室',
     category: 1 // AI工具
+  },
+  {
+    url: `${window.location.origin}/wxapp`,
+    title: '心意动',
+    subTitle: '谈个恋爱吧（请微信搜索同名小程序访问）',
+    category: 6 // 我的项目
   },
 ]);
 

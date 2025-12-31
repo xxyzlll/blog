@@ -4,6 +4,10 @@ import path from 'path';  // 引入 path 模块
 
 export default defineConfig({
   plugins: [vue()],
+  base: 'blog',
+  build: {
+    outDir: 'blog',
+  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src')  // 配置别名 @ → src 目录
