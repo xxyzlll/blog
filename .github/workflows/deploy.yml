@@ -2,7 +2,7 @@ name: Deploy to Server
 
 on:
   push:
-    branches: [ main, master ]  # 可以根据需要调整分支
+    branches: [ main, master, dev ]  # 可以根据需要调整分支
   # 如果需要手动触发，可以添加：
   # workflow_dispatch:
 
@@ -25,7 +25,7 @@ jobs:
     # 3. 安装依赖并打包构建
     - name: Install dependencies and build
       run: |
-        npm ci  # 使用 ci 代替 install 确保依赖版本一致性
+        npm install  # 使用 ci 代替 install 确保依赖版本一致性
         npm run build  # 根据你的项目调整构建命令
       env:
         CI: true
